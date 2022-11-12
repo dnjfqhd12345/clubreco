@@ -8,7 +8,6 @@
 </head>
 <body>
 <h1>전남대학교 동아리 추천 앱</h1>
-<button>Start!</button>
-<a href="survey">시작! </a>	
+<button onclick="location.href='userinfo'">시작!</button>
 </body>
 </html>

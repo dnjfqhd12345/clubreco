@@ -17,7 +17,5 @@
   <input type="reset" value="다시 입력">
 </form>
 
-<h1>${msg} ${selectedclub}</h1>
-
 </body>
 </html>

@@ -11,19 +11,16 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>전남대학교 동아리 추천 어플리케이션</title>
 </head>
 <body>
-<h1>동아리 추천 결과</h1>
+<h1>${username} 님의 동아리 추천 결과</h1>
 <c:forEach items="${nameList}" var="name">
 <tr align="center">
-	<td><c:out value="${name.id}"/></td>
-	<td>${name.id}</td>
+	<td><ol>${name.id}</ol></td>
+	<br>
 </tr>
 </c:forEach>
 
-<c:forEach var="index" begin="1" end="10">
-        <c:out value="${index}" />
-</c:forEach>
 </body>
 </html>

@@ -5,11 +5,139 @@
 
    <mapper namespace="mapper.name">
    	<resultMap id="nameResult" type="nameVO">
-   		<result property="name" column="name"/>
+   		<result property="name" column="NAME"/>
    	</resultMap>
    	<select id="selectEBMList" resultMap="nameResult">
    		<![CDATA[
-   			select * from EBM
+   			SELECT * from EBM
    		]]>
    	</select>
+   	   	<select id="selectEBEList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from EBE
+   		]]>
+   	</select>
+   	<select id="selectEBList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from EB
+   		]]>
+   	</select>
+   	<select id="selectELSList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ELS
+   		]]>
+   	</select>
+   	<select id="selectELWList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ELW
+   		]]>
+   	</select>
+   	<select id="selectSLList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from SL
+   		]]>
+   	</select>
+   	<select id="selectSSUList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from SSU
+   		]]>
+   	</select>
+   	<select id="selectSSTList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from SST
+   		]]>
+   	</select>
+   	<select id="selectSIList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from SI
+   		]]>
+   	</select>
+   	<select id="selectAMSIList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from AMSI
+   		]]>
+   	</select>
+   	<select id="selectAMSDList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from AMSD
+   		]]>
+   	</select>
+   	<select id="selectAMSList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from AMS
+   		]]>
+   	</select>
+   	<select id="selectAPList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from AP
+   		]]>
+   	</select>
+   	<select id="selectATSTList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ATST
+   		]]>
+   	</select>
+   	<select id="selectATTList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ATT
+   		]]>
+   	</select>
+   	<select id="selectATMList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ATM
+   		]]>
+   	</select>
+   	<select id="selectATEList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ATE
+   		]]>
+   	</select>
+   	<select id="selectATBList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from ATB
+   		]]>
+   	</select>
+   	<select id="selectVPCList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from VPC
+   		]]>
+   	</select>
+   	<select id="selectVPSList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from VPS
+   		]]>
+   	</select>
+   	<select id="selectVPOSList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from VPOS
+   		]]>
+   	</select>
+   	
+   	<select id="selectVPOList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from VPO
+   		]]>
+   	</select>
+   	
+   	<select id="selectVAList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from VA
+   		]]>
+   	</select>
+   	<select id="selectVEList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from VE
+   		]]>
+   	</select>
+   	<select id="selectRCList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from RC
+   		]]>
+   	</select>
+   	<select id="selectRBList" resultMap="nameResult">
+   		<![CDATA[
+   			SELECT * from RB
+   		]]>
+   	</select>
+
    </mapper>

@@ -14,13 +14,33 @@ import jdk.internal.org.jline.utils.Log;
 
 @Controller("mainController")
 public class MainController {
+	
+	static String username;
+
+	
 	@RequestMapping(value="/info" ,method=RequestMethod.GET)
 	public ModelAndView info(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("info");
 		return mav;
-
 	}
+	
+	@RequestMapping(value="/userinfo", method=RequestMethod.GET)
+	public ModelAndView userinfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("userinfo");
+		return mav;
+	}
+	@RequestMapping(value="/userinfo", produces = "text/plain;charset=UTF-8",method=RequestMethod.POST)
+	public ModelAndView userinfoPOST(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		String usernickname = request.getParameter("name");
+		username = usernickname;
+		mav.setViewName("survey");
+		return mav;
+	}
+
+	
 	@RequestMapping(value="/main1.do" ,method=RequestMethod.GET)
 	public ModelAndView main1(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -36,8 +56,6 @@ public class MainController {
 		List<NameVO> nameList = dao.selectEBMList();
 		mav.addObject("nameList",nameList);
 		mav.setViewName("result");
-		
-		Log.debug("mav : " + mav);
 		return mav;
 
 	}
@@ -83,10 +101,13 @@ public class MainController {
 	public ModelAndView surveysubmit2(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("ball".equals(selectedclub)) {
 			mav.setViewName("exercise1");
 		} else if("body".equals(selectedclub)) {
-			mav.addObject("body");
+			List<NameVO> nameList = dao.selectEBList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("leisure".equals(selectedclub)) {
 			mav.setViewName("exercise2");
@@ -101,10 +122,15 @@ public class MainController {
 		if("cooper".equals(selectedclub)) {
 			List<NameVO> nameList = dao.selectEBMList();
 			mav.addObject("nameList",nameList);
-			System.out.println(mav.toString());
+			mav.addObject("username",username);
+			for(NameVO data: nameList) {
+				System.out.println(data);
+			}
 			mav.setViewName("result");
 		} else if("compete".equals(selectedclub)) {
-			mav.addObject("compete");
+			List<NameVO> nameList = dao.selectEBEList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -113,11 +139,16 @@ public class MainController {
 	public ModelAndView surveysubmit4(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("summer".equals(selectedclub)) {
-			mav.addObject("summer");
+			List<NameVO> nameList = dao.selectELSList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("winter".equals(selectedclub)) {
-			mav.addObject("winter");
+			List<NameVO> nameList = dao.selectELWList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -126,17 +157,26 @@ public class MainController {
 	public ModelAndView surveysubmit5(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("language".equals(selectedclub)) {
-			mav.addObject("language");
+			List<NameVO> nameList = dao.selectSLList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("startup".equals(selectedclub)) {
-			mav.addObject("startup");
+			List<NameVO> nameList = dao.selectSSUList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("study".equals(selectedclub)) {
-			mav.addObject("study");
+			List<NameVO> nameList = dao.selectSSTList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("it".equals(selectedclub)) {
-			mav.addObject("it");
+			List<NameVO> nameList = dao.selectSIList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -145,10 +185,13 @@ public class MainController {
 	public ModelAndView surveysubmit6(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("music".equals(selectedclub)) {
 			mav.setViewName("art2");
 		} else if("picture".equals(selectedclub)) {
-			mav.addObject("picture");
+			List<NameVO> nameList = dao.selectAPList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("trip".equals(selectedclub)) {
 			mav.setViewName("art4");
@@ -159,10 +202,13 @@ public class MainController {
 	public ModelAndView surveysubmit7(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("yes".equals(selectedclub)) {
 			mav.setViewName("art3");
 		} else if("no".equals(selectedclub)) {
-			mav.addObject("no");
+			List<NameVO> nameList = dao.selectAMSList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -171,11 +217,16 @@ public class MainController {
 	public ModelAndView surveysubmit8(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("instrument".equals(selectedclub)) {
-			mav.addObject("instrument");
+			List<NameVO> nameList = dao.selectAMSIList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("dance".equals(selectedclub)) {
-			mav.addObject("dance");
+			List<NameVO> nameList = dao.selectAMSDList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -184,8 +235,11 @@ public class MainController {
 	public ModelAndView surveysubmit9(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("yes".equals(selectedclub)) {
-			mav.addObject("yes");
+			List<NameVO> nameList = dao.selectATSTList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("no".equals(selectedclub)) {
 			mav.setViewName("art5");
@@ -196,17 +250,26 @@ public class MainController {
 	public ModelAndView surveysubmit10(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("theater".equals(selectedclub)) {
-			mav.addObject("theater");
+			List<NameVO> nameList = dao.selectATTList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("magic".equals(selectedclub)) {
-			mav.addObject("magic");
+			List<NameVO> nameList = dao.selectATMList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("edit".equals(selectedclub)) {
-			mav.addObject("edit");
+			List<NameVO> nameList = dao.selectATEList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("boardgame".equals(selectedclub)) {
-			mav.addObject("boardgame");
+			List<NameVO> nameList = dao.selectATBList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -215,13 +278,18 @@ public class MainController {
 	public ModelAndView surveysubmit11(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("people".equals(selectedclub)) {
 			mav.setViewName("volunteering2");
 		} else if("animal".equals(selectedclub)) {
-			mav.addObject("animal");
+			List<NameVO> nameList = dao.selectVAList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("social".equals(selectedclub)) {
-			mav.addObject("social");
+			List<NameVO> nameList = dao.selectVEList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -230,11 +298,16 @@ public class MainController {
 	public ModelAndView surveysubmit12(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("child".equals(selectedclub)) {
-			mav.addObject("child");
+			List<NameVO> nameList = dao.selectVPCList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("student".equals(selectedclub)) {
-			mav.addObject("student");
+			List<NameVO> nameList = dao.selectVPSList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("old".equals(selectedclub)) {
 			mav.setViewName("volunteering3");
@@ -245,11 +318,16 @@ public class MainController {
 	public ModelAndView surveysubmit13(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("yes".equals(selectedclub)) {
-			mav.addObject("yes");
+			List<NameVO> nameList = dao.selectVPOSList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("no".equals(selectedclub)) {
-			mav.addObject("no");
+			List<NameVO> nameList = dao.selectVPOList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		}
 		return mav;
@@ -258,11 +336,19 @@ public class MainController {
 	public ModelAndView surveysubmit14(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		String selectedclub = request.getParameter("selectedclub");
+		NameDAO dao = new NameDAO();
 		if("christian".equals(selectedclub)) {
-			mav.addObject("christian");
+			List<NameVO> nameList = dao.selectRCList();
+			for(NameVO data: nameList) {
+				System.out.println(data);
+			}
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} else if("buddhism".equals(selectedclub)) {
-			mav.addObject("buddhism");
+			List<NameVO> nameList = dao.selectRBList();
+			mav.addObject("nameList",nameList);
+			mav.addObject("username",username);
 			mav.setViewName("result");
 		} 
 		return mav;

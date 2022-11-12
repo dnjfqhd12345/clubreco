@@ -7,13 +7,13 @@
 <title>전남대학교 동아리 추천 어플리케이션</title>
 </head>
 <body>
-<h1>무대에 오르고 싶나요?</h1>
-<form action="${contextPath}/clubreco/surveysubmit7" method="post">
-<input type="radio" name="selectedclub" value="yes" checked="checked">예
-<input type="radio" name="selectedclub" value="no">아니요
+<h1>당신의 이름은?</h1>
+<form action="${contextPath}/clubreco/userinfo" method="post">
+    <input type="text" name="name" size="20"></input>
   <input type="submit" value="제출">
   <input type="reset" value="다시 입력">
 </form>
+
 
 </body>
 </html>
