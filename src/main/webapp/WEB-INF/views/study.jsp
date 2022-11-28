@@ -1,21 +1,62 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Àü³²´ëÇĞ±³ µ¿¾Æ¸® ÃßÃµ ¾îÇÃ¸®ÄÉÀÌ¼Ç</title>
+<meta charset="UTF-8">
+<title>ì „ë‚¨ëŒ€í•™êµ ë™ì•„ë¦¬ ì¶”ì²œ ì–´í”Œë¦¬ì¼€ì´ì…˜</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="main.css">
 </head>
 <body>
-<h1>¾î¶°ÇÑ ºĞ¾ß¿¡ µµÀüÇÏ°í ½Í³ª¿ä?</h1>
+  <div>
+    <section id = "qna">
+      <div class="status mx-auto mt-5">
+        <div class = "statusBar"></div>
+      </div>
+<div>
+<h1 class="mx-auto mt-5 pt-4 px-4 py-4">ì–´ë– í•œ ë¶„ì•¼ì— ë„ì „í•˜ê³  ì‹¶ë‚˜ìš”?</h1></div>
 <form action="${contextPath}/clubreco/surveysubmit5" method="post">
-<input type="radio" name="selectedclub" value="language">¾ğ¾î
-<input type="radio" name="selectedclub" value="startup">°ø¸ğÀü/Ã¢¾÷
-<input type="radio" name="selectedclub" value="study">¼ø¼öÇĞ¹®
+<div id="answ" class="mx-auto mt-5 pt-5 px-5 py-5" >
+<input type="radio" name="selectedclub" value="language">ì–¸ì–´
+<input type="radio" name="selectedclub" value="startup">ê³µëª¨ì „/ì°½ì—…
+<input type="radio" name="selectedclub" value="study">ìˆœìˆ˜í•™ë¬¸
 <input type="radio" name="selectedclub" value="it">IT
-  <input type="submit" value="Á¦Ãâ">
-  <input type="reset" value="´Ù½Ã ÀÔ·Â">
+</div>
+<div id="send" class="mx-auto mt-5 pt-5 px-5 py-5">
+  <input type="submit" value="ì œì¶œ">
+  <input type="reset" value="ë‹¤ì‹œ ì…ë ¥">
+  </div>
 </form>
+</section>
+</div>
+<script>
+  const main = document.querySelector("#main");
+  const qna = document.querySelector("#qna");
+  const result = document.querySelector("#result");
+  const endPoint = 4;
+  
+  function begin(){
+    main.style.animation = "fadeOut 1s";
+    setTimeout(() => {
+    qna.style.animation = "fadeIn 1s";
+    setTimeout(() => {
+      main.style.display = 'none';
+      qna.style.display = 'block';
+    }, 500)
+    next();
+    }, 500);
+    result();
+  }
+  
 
+  function next(){
+    var status = document.querySelector('.statusBar');
+    status.style.width = (100/endPoint) * 2 + '%';
+  }
+</script>  
 </body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main.css">
+
 </html>

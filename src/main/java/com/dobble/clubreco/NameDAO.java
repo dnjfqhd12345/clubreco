@@ -18,9 +18,9 @@ public class NameDAO {
 				Reader reader = Resources.getResourceAsReader(resource);
 				sqlMapper = new SqlSessionFactoryBuilder().build(reader);
 				reader.close();
-				System.out.println("DB¿¬°á ¼º°ø!");
+				System.out.println("DB ì—°ê²° ì„±ê³µ!");
 			} catch (Exception e) {
-				System.out.println("DB¿¬°á ½ÇÆÐ" + e);
+				System.out.println("DB ì—°ê²° ì‹¤íŒ¨" + e);
 				e.printStackTrace();
 			}
 		}

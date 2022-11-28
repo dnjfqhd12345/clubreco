@@ -1,20 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Àü³²´ëÇÐ±³ µ¿¾Æ¸® ÃßÃµ ¾îÇÃ¸®ÄÉÀÌ¼Ç</title>
+<meta charset="UTF-8">
+<title>ì „ë‚¨ëŒ€í•™êµ ë™ì•„ë¦¬ ì¶”ì²œ ì–´í”Œë¦¬ì¼€ì´ì…˜</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main.css">
 </head>
 <body>
-<h1>¾î¶² Á¾·ùÀÇ ¿îµ¿À» ÁÁ¾ÆÇÏ½Ã³ª¿ä?</h1>
-<form action="${contextPath}/clubreco/surveysubmit2" method="post">
-<input type="radio" name="selectedclub" value="ball" checked="checked">³ª´Â °øÀ» ¹«¼­¿ö ÇÏÁö ¾Ê´Â´Ù.
-<input type="radio" name="selectedclub" value="body">³ª´Â °­ÇØÁö°í ½Í´Ù.
-<input type="radio" name="selectedclub" value="leisure">¿îµ¿À» À§ÇØ¼­ µ·À» ¾Æ³¢Áö ¾Ê´Â´Ù.
-  <input type="submit" value="Á¦Ãâ">
-  <input type="reset" value="´Ù½Ã ÀÔ·Â">
+  <div>
+  <section id = "qna">
+    <div class="status mx-auto mt-5">
+      <div class = "statusBar"></div>
+    </div>
+    <div>
+      <h1 class="mx-auto mt-5 pt-4 px-4 py-4">ì–´ë–¤ ì¢…ë¥˜ì˜ ìš´ë™ì„ ì¢‹ì•„í•˜ì‹œë‚˜ìš”?</h1></div>
+      <form action="${contextPath}/clubreco/surveysubmit2" method="post">
+      <div id="answ" class="mx-auto mt-5 pt-5 px-5 py-5" >
+        <input type="radio" name="selectedclub" value="ball" checked="checked">ë‚˜ëŠ” ê³µì„ ë¬´ì„œì›Œ í•˜ì§€ ì•ŠëŠ”ë‹¤.
+        <input type="radio" name="selectedclub" value="body">ë‚˜ëŠ” ê°•í•´ì§€ê³  ì‹¶ë‹¤.
+        <input type="radio" name="selectedclub" value="leisure">ìš´ë™ì„ ìœ„í•´ì„œ ëˆì„ ì•„ë¼ì§€ ì•ŠëŠ”ë‹¤.
+      </div>
+      <div id="send" class="mx-auto mt-5 pt-5 px-5 py-5">
+        <input type="submit" value="ì œì¶œ">
+        <input type="reset" value="ë‹¤ì‹œìž…ë ¥">
+        </div>
 </form>
+</section>
+</div>
+<script>
+  const main = document.querySelector("#main");
+  const qna = document.querySelector("#qna");
+  const result = document.querySelector("#result");
+  const endPoint = 4;
+  
+  function begin(){
+    main.style.animation = "fadeOut 1s";
+    setTimeout(() => {
+    qna.style.animation = "fadeIn 1s";
+    setTimeout(() => {
+      main.style.display = 'none';
+      qna.style.display = 'block';
+    }, 500)
+    next();
+    }, 500);
+    result();
+  }
+  
 
+  function next(){
+    var status = document.querySelector('.statusBar');
+    status.style.width = (100/endPoint) * 2 + '%';
+  }
+</script>  
 </body>
+
 </html>
